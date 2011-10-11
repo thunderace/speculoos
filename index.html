@@ -5,16 +5,10 @@
   	<title>k33g/SpeculOOs @ GitHub</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/default.min.css">
-
-	<script src="https://raw.github.com/k33g/speculoos/master/speculoos.js"></script>
-	<script src="js/zepto.min.js"></script>
-	<script src="js/highlight.min.js"></script>
 </head>
 
 <body>
-  <a href="http://github.com/k33g/speculoos"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div class="container-fluid">
+  <div class="container">
 	
 		<div class="content" style="padding-top:15px; padding-bottom:15px; ">
 			<div class="hero-unit">
@@ -30,6 +24,7 @@
 				<h2>
 			      Simple Javascript Class notation, CoffeeScript compliant !
 			    </h2>
+				get the source code on GitHub : <a href="http://github.com/k33g/speculoos">k33g/speculoos</a>
 			</div>
 			<!-- end of hero-unit -->
 			
@@ -49,27 +44,35 @@
 				<h2>Use</h2>
 				<p>
 					<pre><code>
+/* this is javascript */
 var Thing = Class({
-    constructor : function Thing (kind) {
-        this.kind = kind;
-    }
+	constructor : function Thing (kind) {
+		this.kind = kind;
+	},
+	sayHello : function() {
+		console.log("Hello !");
+	}
 })
 
 var Human = Class({
-    extends : Thing, /* inheritance */
-    constructor : function Human (name) {
-        this.name = name;
-        /* Call Parent constructor */
-        Human.__super__.constructor.call(this, "I AM A HUMAN");
-        Human.HumanCounter += 1;
-    },
-
-    toString : function() {
-        return "Hello " + this.name;
-    },
-    /* Static Members */
-    $HumanCounter : 0,
-    $getHumanCounter : function() { return Human.HumanCounter; }
+	extends : Thing, // inheritance 
+	constructor : function Human (name) {
+		this.name = name;
+		// Call Parent constructor
+		Human.__super__.constructor.call(this, "I AM A HUMAN");
+		Human.HumanCounter += 1;
+	},
+	toString : function() {
+		return "Hello " + this.name;
+	},
+	sayHello : function() {
+		// Call Parent method
+		Human.__super__.sayHello.call(this);
+		console.log("I'm "+this.name);
+	},
+	// Static Members
+	$HumanCounter : 0,
+	$getHumanCounter : function() { return Human.HumanCounter; }
 });
 					</code></pre>
 				</p>
@@ -79,6 +82,7 @@ var Human = Class({
 					<pre><code>
 var bob = new Human('Bob');
 console.log(bob, bob.toString(), Human.getHumanCounter(), Human.HumanCounter);
+bob.sayHello();
 					</code></pre>
 				</p>	
 
@@ -86,28 +90,92 @@ console.log(bob, bob.toString(), Human.getHumanCounter(), Human.HumanCounter);
 				<p>
 					<pre><code>
 class SuperHeroe extends Human
-    constructor:(name)->
-        super name
+	constructor:(name)->
+		super name
+	sayHello:->
+		super
+		console.log "And i'm a superheroe"
 
 superMan = new SuperHeroe 'Clark Kent'
 
 console.log superMan, superMan.toString(), SuperHeroe.getHumanCounter(), Human.HumanCounter
+superMan.sayHello()
 					</code></pre>
 				</p>
+				<h2>Open your console to see the results ...</h2>
 
-			    <div class="footer">
-			      get the source code on GitHub : <a href="http://github.com/k33g/speculoos">k33g/speculoos</a>
-			    </div>
 		<div>
 		<!-- end of content -->
 	</div>
 	<!-- end of container fluid -->
   
 </body>
+<script src="js/zepto.min.js"></script>
+<script src="js/showdown.js"></script>
+<script src="js/highlight.min.js"></script>
 <script>
 	$(document).ready(function() {
-		console.log("color");
-		$('pre code').each(function(i, e) {hljs.highlightBlock(e, '    ')});
+		var converter = new Showdown.converter();
+		$('pre code').each(function(e){ e.innerHTML = converter.makeHtml(e.innerHTML); })
+		$('pre code').each(function(e) {hljs.highlightBlock(e, '    ')});
 	});
+</script>
+<script src="https://raw.github.com/k33g/speculoos/master/speculoos.js"></script>
+<script src="js/coffee-script.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	/* this is javascript */
+	var Thing = Class({
+		constructor : function Thing (kind) {
+			this.kind = kind;
+		},
+		
+		sayHello : function() {
+			console.log("Hello !");
+		}
+	})
+
+	var Human = Class({
+		extends : Thing, /* inheritance */
+		constructor : function Human (name) {
+			this.name = name;
+			/* Call Parent constructor */
+			Human.__super__.constructor.call(this, "I AM A HUMAN");
+			Human.HumanCounter += 1;
+		},
+
+		toString : function() {
+			return "Hello " + this.name;
+		},
+		
+		sayHello : function() {
+			/* Call Parent method */
+			Human.__super__.sayHello.call(this);
+			console.log("I'm "+this.name);
+		},
+		
+		/* Static Members */
+		$HumanCounter : 0,
+		$getHumanCounter : function() { return Human.HumanCounter; }
+	});
+
+	var bob = new Human('Bob');
+	console.log(bob, bob.toString(), Human.getHumanCounter(), Human.HumanCounter);
+	bob.sayHello();
+
+</script>
+<script type="text/coffeescript">
+	### this is coffeescript ###
+	class SuperHeroe extends Human
+		constructor:(name)->
+			super name
+
+		sayHello:->
+			super
+			console.log "And i'm a superheroe"
+
+	superMan = new SuperHeroe 'Clark Kent'
+
+	console.log superMan, superMan.toString(), SuperHeroe.getHumanCounter(), Human.HumanCounter
+	superMan.sayHello()
 </script>
 </html>
