@@ -59,7 +59,7 @@
 					<pre><code>
 /* this is javascript */
 var Thing = Class({
-	constructor : function Thing (kind) {
+	constructor : function Thing (kind) { /* you have to name the constructor */
 		this.kind = kind;
 		// private variable with getter and setter
 		var _nickName = '???';
@@ -76,7 +76,7 @@ var Human = Class({
 	constructor : function Human (name) {
 		this.name = name;
 		// Call Parent constructor
-		Human.__super__.constructor.call(this, "I AM A HUMAN");
+		Human.super.constructor.call(this, "I AM A HUMAN");
 		Human.HumanCounter += 1;
 	},
 	toString : function() {
@@ -84,7 +84,7 @@ var Human = Class({
 	},
 	sayHello : function() {
 		// Call Parent method
-		Human.__super__.sayHello.call(this);
+		Human.super.sayHello.call(this);
 		console.log("I'm "+this.name);
 	},
 	// Static Members
@@ -161,7 +161,7 @@ superMan.sayHello()
 		constructor : function Human (name) {
 			this.name = name;
 			/* Call Parent constructor */
-			Human.__super__.constructor.call(this, "I AM A HUMAN");
+			Human.super.constructor.call(this, "I AM A HUMAN");
 			Human.HumanCounter += 1;
 		},
 
@@ -171,7 +171,7 @@ superMan.sayHello()
 		
 		sayHello : function() {
 			/* Call Parent method */
-			Human.__super__.sayHello.call(this);
+			Human.super.sayHello.call(this);
 			console.log("I'm "+this.name);
 		},
 		
