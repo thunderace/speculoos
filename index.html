@@ -37,6 +37,7 @@
 				<h2>
 			      Simple Javascript Class notation, CoffeeScript compliant !
 			    </h2>
+                <h3>runs with Nodejs too</h3>
 				get the source code on GitHub : <a href="http://github.com/k33g/speculoos">k33g/speculoos</a>
 			</div>
 			<!-- end of hero-unit -->
@@ -58,7 +59,7 @@
 				<p>
 					<pre><code>
 /* this is javascript */
-var Thing = Class({
+var Thing = speculoos.Class({
 	//you have to name the constructor 
 	constructor : function Thing (kind) { 
 		this.kind = kind;
@@ -72,7 +73,7 @@ var Thing = Class({
 	}
 })
 
-var Human = Class({
+var Human = speculoos.Class({
 	extends : Thing, // inheritance 
 	constructor : function Human (name) {
 		this.name = name;
@@ -143,7 +144,7 @@ superMan.sayHello()
 <script src="js/coffee-script.js" type="text/javascript" charset="utf-8"></script>
 <script>
 	/* this is javascript */
-	var Thing = Class({
+	var Thing = speculoos.Class({
 		constructor : function Thing (kind) {
 			this.kind = kind;
 			/* private variable with getter and setter */
@@ -157,7 +158,7 @@ superMan.sayHello()
 		}
 	})
 
-	var Human = Class({
+	var Human = speculoos.Class({
 		extends : Thing, /* inheritance */
 		constructor : function Human (name) {
 			this.name = name;
