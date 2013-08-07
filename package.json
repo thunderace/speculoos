@@ -1,7 +1,7 @@
 {
   "name": "speculoos",
   "description": "SpeculOOs is just a very simple Javascript Class notation, but ... CoffeeScript compliant ! (browser and nodejs)",
-  "main": "speculoos.js",
+  "main": "./speculoos.js",
   "author": {
     "name": "Philippe Charrière"
   },
