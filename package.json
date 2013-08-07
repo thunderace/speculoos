@@ -1,0 +1,24 @@
+{
+  "name": "speculoos",
+  "description": "SpeculOOs is just a very simple Javascript Class notation, but ... CoffeeScript compliant ! (browser and nodejs)",
+  "main": "speculoos.js",
+  "author": {
+    "name": "Philippe Charrière"
+  },
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/thunderace/speculoos.git"
+  },
+  "bugs": {
+    "url": "http://github.com/k33g/speculoos/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "readmeFilename": "README.md",
+  "_id": "speculoos@0.0.3",
+  "_from": "speculoos@0.0.3"
+}
